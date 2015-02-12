@@ -4,6 +4,8 @@ import json
 import atexit
 from itertools import groupby
 
+from .py2_compat import MemoryView
+
 
 class DuplicateValueException(RuntimeError):
     """Raised when all parameters to value are duplicated"""
@@ -81,7 +83,7 @@ class Collection(object):
             # in RAM anyway
             f.write(b'\x00' * offset)
             f.flush()
-            mem = memoryview(mmap.mmap(f.fileno(), offset))
+            mem = MemoryView(mmap.mmap(f.fileno(), offset))
 
         os.rename(tmppath, path)
 

@@ -24,7 +24,7 @@ class State(_Value):
                 .format(CACHE_LINE_SIZE, self.HEADER_SIZE,
                         CACHE_LINE_SIZE - self.HEADER_SIZE))
         self.size = size
-        super().__init__(**kwargs)
+        super(State, self).__init__(**kwargs)
 
     def _get_size(self):
         return self.HEADER_SIZE + self.size
