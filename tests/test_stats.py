@@ -1,7 +1,7 @@
 import os
 import struct
 import textwrap
-from cantal import Collection, Counter, Float, Integer, State
+from cantal import Collection, Counter, Float, Integer, State, Fork
 from unittest import TestCase
 
 
@@ -31,10 +31,13 @@ class TestBase(TestCase):
     def state(self, **kwargs):
         return State(collection=self.collection, **kwargs)
 
-    def assertRead(self, value, offset=0):
+    def fork(self, items, **kwargs):
+        return Fork(items, collection=self.collection, **kwargs)
+
+    def assertRead(self, value, offset=0, size=None):
         with open(self._path + '.values', 'rb') as file:
             file.seek(offset, 0)
-            self.assertEqual(file.read(), value)
+            self.assertEqual(file.read(size), value)
 
     def assertMeta(self, value):
         with open(self._path + '.meta', 'rt') as file:

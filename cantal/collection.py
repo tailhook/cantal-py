@@ -30,7 +30,7 @@ class Collection(object):
         self._all_values = {}
 
     def add(self, dimensions, value):
-        name = json.dumps(dimensions)
+        name = json.dumps(dimensions, sort_keys=True)
         if name in self._all_values:
             raise DuplicateValueException(
                 "Counter {} is already defined".format(name))
