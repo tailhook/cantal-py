@@ -55,8 +55,10 @@ class State(_Value):
     @contextmanager
     def context(self, value):
         self.enter(value)
-        yield self
-        self._memoryview[0:8] = b'\x00\x00\x00\x00\x00\x00\x00\x00'
+        try:
+            yield self
+        finally:
+            self._memoryview[0:8] = b'\x00\x00\x00\x00\x00\x00\x00\x00'
 
     def exit(self):
         self._memoryview[0:8] = b'\x00\x00\x00\x00\x00\x00\x00\x00'
