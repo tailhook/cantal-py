@@ -35,7 +35,7 @@ class Fork(object):
         self._branch = None
         # We do our best not to crash any code which does accouning the
         # wrong way. So to report the problems we use a separate counter
-        self._err = Counter(state=state+'.err')
+        self._err = Counter(metric="err", state=state, **kwargs)
 
     @contextmanager
     def context(self):
