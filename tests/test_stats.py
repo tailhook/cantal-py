@@ -35,9 +35,10 @@ class TestBase(TestCase):
         return Fork(items, collection=self.collection, **kwargs)
 
     def assertRead(self, value, offset=0, size=None):
+        size_arg = () if size is None else (size,)
         with open(self._path + '.values', 'rb') as file:
             file.seek(offset, 0)
-            self.assertEqual(file.read(size), value)
+            self.assertEqual(file.read(*size_arg), value)
 
     def assertMeta(self, value):
         with open(self._path + '.meta', 'rt') as file:
