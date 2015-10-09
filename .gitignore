@@ -1,3 +1,7 @@
 __pycache__
 MANIFEST
 *.pyc
+
+/.vagga
+/.vagrant
+/doc/_build
