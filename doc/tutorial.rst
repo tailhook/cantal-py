@@ -1,5 +1,5 @@
 .. highlight:: python
-.. default-role:: python
+.. default-domain:: python
 
 
 ========
@@ -35,15 +35,14 @@ The key things:
 2. Then you call ``start()``
 3. Afterwards you may freely adjust values of the metrics
 
-Cantal only works if it has ``CANTAL_PATH`` provided in the environment, in
-other case all counters are just no op.
-
 Rules of thumb:
 
 1. Create all metrics at module import time
 2. Import all modules before calling ``main()`` or whatever init function
-2. Writing metric is very cheap, so you don't need to aggregate them in user
+3. Writing metric is very cheap, so you don't need to aggregate them in user
    code
-3. Creating metrics dynamically (after ``start()``) is not supported, but you
+4. Creating metrics dynamically (after ``start()``) is not supported, but you
    can create metrics in a loop or similar
+
+See :ref:`metrics` for more info.
 
