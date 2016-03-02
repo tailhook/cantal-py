@@ -103,7 +103,8 @@ Compound Utilities
 
    Example::
 
-       track_request = Fork(['app', 'redis', 'sql'])
+       track_request = Fork(['app', 'redis', 'sql'],
+                            state="myapp.request_processing")
 
        def process_request(req):
            with track_request.context():
