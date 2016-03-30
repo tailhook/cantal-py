@@ -2,6 +2,7 @@ import os
 import mmap
 import json
 import atexit
+import warnings
 from itertools import groupby
 
 from .py2_compat import MemoryView
@@ -119,11 +120,9 @@ class ActiveCollection(object):
 
 global_collection = Collection()
 
-
-def start(path=None):
+def start():
     global global_collection
-    if path is None:
-        path = os.environ.pop("CANTAL_PATH", None)
+    path = os.environ.pop("CANTAL_PATH", None)
     if path is None:
         if 'XDG_RUNTIME_DIR' in os.environ:
             path = '{}/cantal.{}'.format(
@@ -133,6 +132,10 @@ def start(path=None):
             path = '/tmp/cantal.{}.{}'.format(
                 os.getuid(),
                 os.getpid())
+        warnings.warn(
+            "No CANTAL_PATH is set in the environment, using {!r}. "
+            "The cantal-agent will be unable to discover it.".format(path),
+            stacklevel=2)
 
     global_collection = global_collection.start(path)
     atexit.register(global_collection.close)
