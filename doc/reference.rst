@@ -109,6 +109,59 @@ over multiple processes by different dimensions.
 Compound Utilities
 ==================
 
+.. class:: RequestTracker
+
+   The class embeds multiple counters so it's easy to track both incoming
+   and outgoing requests.
+
+   Example:
+
+   .. code-block:: python
+        :emphasize-lines: 5,7,10
+
+        http = RequestTracker('http')
+        sql = RequestTracker('http.sql')
+
+        def application(environ, start_response):
+            with http.request():
+                do_something()
+                with sql.request():
+                    value = sql_query()
+                if value == None:
+                    http.errors.incr()
+                    start_response('500 Internal Server Error', [])
+                    return [b"Error"]
+                do_something_else()
+                start_response('200 OK', [])
+                return [value.encode('utf-8')]
+
+   The counter group embeds the following primitive metrics:
+
+    * ``requests`` -- the :class:`Counter` of requests
+    * ``total_duration`` (aliased as ``duration`` in python attribute)
+      -- :class:`Counter` for total duration of all requests (in milliseconds),
+      this is later used to calculate average response time
+    * ``errors`` -- :class:`Counter` for number of errors
+    * ``in_progress`` -- :class:`Integer` of current requests in progress
+
+   You are free to use ``req_tracker.errors.incr()`` for all your custom
+   errors which are not exceptions (i.e. non-200 HTTP response). Exceptions
+   are tracked automatically.
+
+   This works for both synchronous and asynchronous processes. In synchonous
+   ones the ``in_progress`` is likely to be ``0`` or ``1`` (but when summing
+   over cluster you'll get some bigger values).
+
+   .. method:: request()
+
+      Returns context manager that tracks requests.
+
+      The ``requests`` and ``total_duration`` are incremented *after* request.
+
+      The ``errors`` is automatically incremented if exception happened
+      inside the context manager.
+
+
 .. class:: Fork
 
    The class to handle multiple states of the application. In the frontend
