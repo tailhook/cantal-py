@@ -1,6 +1,7 @@
 __pycache__
-MANIFEST
+/dist
 *.pyc
+*.pyo
 
 /.vagga
 /.vagrant
