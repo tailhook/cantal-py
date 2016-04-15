@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='cantal',
-      version='0.1',
+      version='0.1.0',
       description='The client library for monitoring and heartbeating',
       author='Paul Colomiets',
       author_email='paul@colomiets.name',
