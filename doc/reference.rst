@@ -46,9 +46,23 @@ over multiple processes by different dimensions.
 
       Update value of the metric
 
-      .. hint:: Updating the value is very cheap. So you should set it every
-         time internal state is updated (if it's possible) rather than having
-         separate timers and copy the value.
+   .. method:: incr(value=1)
+
+      Increment value of metric
+
+      .. hint:: Updating the value is very cheap. You don't have to duplicate
+         the value somewhere. For example, you may increment the counter on
+         the start of the request and decrement afterwards. You may use
+         `get()` method to get the value if you need to use it for applciation
+         needs.
+
+   .. method:: decr(value=1)
+
+      Decrement value of metric. Equivalent of ``incr(-value)``
+
+   .. method:: get()
+
+      Get value last written (or adjusted according to the counters)
 
 .. class:: Float
 
