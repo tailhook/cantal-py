@@ -2,7 +2,7 @@ from .core import _Value
 
 
 class Counter(_Value):
-    __slots__ = ('_memoryview')
+    __slots__ = ()
 
     def __iadd__(self, value):
         self._memoryview[0] += value

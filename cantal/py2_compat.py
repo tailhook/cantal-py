@@ -27,7 +27,10 @@ else:
             return MemoryView(self._mmap, item)
 
         def cast(self, typ):
-            start, stop, step = self._slice.indices(len(self._mmap))
+            slc = self._slice
+            if slc is None:
+                slc = slice(None)  # full slice
+            start, stop, step = slc.indices(len(self._mmap))
             assert step == 1, 'Only step 1 supported'
             bytesize = struct.calcsize(typ)
             _typ = TYPEMAP[typ] * ((stop - start) // bytesize)
