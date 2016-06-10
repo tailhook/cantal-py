@@ -19,3 +19,9 @@ class NoCrashWithoutStart(TestCase):
         val = State(collection=self.collection, hello="world")
         val.enter('Nice work!')
         val.exit()
+
+    def test_after_start(self):
+        cnt = Counter(collection=self.collection, hello="world")
+        collection = self.collection.start('/tmp/test.cantal')
+        with self.assertRaises(RuntimeError):
+            cnt2 = Counter(collection=collection, hello="world")
