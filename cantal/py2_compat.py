@@ -9,8 +9,8 @@ else:
 
     TYPEMAP = {
         'B': ctypes.c_char,
-        'l': ctypes.c_long,
-        'L': ctypes.c_ulong,
+        'q': ctypes.c_long,
+        'Q': ctypes.c_ulonglong,
         'd': ctypes.c_double,
     }
 

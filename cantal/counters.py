@@ -15,4 +15,4 @@ class Counter(_Value):
         return 8
 
     def _get_type(self):
-        return ('L', 'counter 8')
+        return ('Q', 'counter 8')

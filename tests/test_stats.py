@@ -51,11 +51,11 @@ class TestValues(TestBase):
         cnt = self.counter(name="hello")
         self.start()
         cnt += 1
-        self.assertRead(struct.pack('L', 1))
+        self.assertRead(struct.pack('Q', 1))
         cnt += 3
-        self.assertRead(struct.pack('L', 4))
+        self.assertRead(struct.pack('Q', 4))
         cnt.incr(1234)
-        self.assertRead(struct.pack('L', 1238))
+        self.assertRead(struct.pack('Q', 1238))
 
     def test_float(self):
         cnt = self.float(name="hello")
@@ -73,11 +73,11 @@ class TestValues(TestBase):
         cnt = self.integer(name="hello")
         self.start()
         cnt[0] = 3
-        self.assertRead(struct.pack('l', 3))
+        self.assertRead(struct.pack('q', 3))
         cnt[0] = -1000
-        self.assertRead(struct.pack('l', -1000))
+        self.assertRead(struct.pack('q', -1000))
         cnt.set(123564)
-        self.assertRead(struct.pack('l', 123564))
+        self.assertRead(struct.pack('q', 123564))
 
     def test_state(self):
         state = self.state(name="hello", value="world")

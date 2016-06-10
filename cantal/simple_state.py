@@ -7,7 +7,7 @@ from .core import _Value
 from .const import CACHE_LINE_SIZE
 
 
-_timestr = struct.Struct('L')
+_timestr = struct.Struct('Q')
 
 
 class State(_Value):

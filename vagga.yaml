@@ -16,6 +16,13 @@ containers:
     - !Alpine v3.4
     - !Install [python3]
 
+  py3-ubuntu-i386:
+    setup:
+    - !UbuntuRelease
+      codename: xenial
+      arch: i386
+    - !Install [python3]
+
 commands:
 
   doc: !Command
@@ -29,7 +36,7 @@ commands:
 
   test: !Command
     description: Run tests for python2 and python3
-    prerequisites: [_test-py2, _test-py3]
+    prerequisites: [_test-py2, _test-py3, _test-py3-32bit]
     container: docs
     run: "echo All tests are fine"
 
@@ -41,4 +48,9 @@ commands:
   _test-py3: !Command
     description: Run python3 tests
     container: py3
+    run: [python3, -m, unittest, discover]
+
+  _test-py3-32bit: !Command
+    description: Run python3 32bit tests
+    container: py3-ubuntu-i386
     run: [python3, -m, unittest, discover]

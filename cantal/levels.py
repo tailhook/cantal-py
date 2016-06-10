@@ -30,7 +30,7 @@ class Integer(_Value):
         return 8
 
     def _get_type(self):
-        return ('l', 'level 8 signed')
+        return ('q', 'level 8 signed')
 
     def set(self, value):
         self._memoryview[0] = value
