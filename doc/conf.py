@@ -14,8 +14,8 @@ master_doc = 'index'
 project = u'Cantal-Py'
 copyright = u'2015, Paul Colomiets'
 
-version = '0.1'
-release = '0.1'
+version = '0.2'
+release = '0.2.0'
 
 exclude_patterns = ['_build']
 
