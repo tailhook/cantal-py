@@ -5,7 +5,7 @@ from .py2_compat import MemoryView
 
 
 class _Value(object):
-    __slots__ = ()
+    __slots__ = ('_memoryview',)
 
     def __init__(self, *args, **kwargs):
         if args:

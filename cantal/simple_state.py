@@ -11,7 +11,7 @@ _timestr = struct.Struct('L')
 
 
 class State(_Value):
-    __slots__ = ('_memoryview', 'size')
+    __slots__ = ('size',)
     HEADER_SIZE = _timestr.size
     assert HEADER_SIZE == 8, 'We use constants in enter/exit/context'
 

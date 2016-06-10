@@ -2,7 +2,7 @@ from .core import _Value
 
 
 class Float(_Value):
-    __slots__ = ('_memoryview')
+    __slots__ = ()
 
     def incr(self, value=1):
         self._memoryview[0] = value
@@ -24,7 +24,7 @@ class Float(_Value):
 
 
 class Integer(_Value):
-    __slots__ = ('_memoryview')
+    __slots__ = ()
 
     def _get_size(self):
         return 8
