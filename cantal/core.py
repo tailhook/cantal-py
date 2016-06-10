@@ -1,7 +1,12 @@
 import abc
+import sys
+import logging
 
 from . import collection as _collection
 from .py2_compat import MemoryView
+
+
+log = logging.getLogger(__name__)
 
 
 class _Value(object):
@@ -14,6 +19,8 @@ class _Value(object):
         if collection is None:
             collection = _collection.global_collection
         collection.add(kwargs, self)
+
+        log.debug("New %s with params %r", self.__class__.__name__, kwargs)
 
         # Create temporary view, this is useful if you enter some branch of
         # code in unusual code path such as ipython shell or management
