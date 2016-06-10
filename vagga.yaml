@@ -2,9 +2,19 @@ containers:
 
   docs:
     setup:
-    - !Alpine v3.2
+    - !Alpine v3.4
     - !Install [alpine-base, py-sphinx, make]
     - !Py2Install [sphinx_rtd_theme]
+
+  py2:
+    setup:
+    - !Alpine v3.4
+    - !Install [python]
+
+  py3:
+    setup:
+    - !Alpine v3.4
+    - !Install [python3]
 
 commands:
 
@@ -16,3 +26,19 @@ commands:
     epilog: |
       --------------------------------------------------------
       Documentation is built under docs/_build/html/index.html
+
+  test: !Command
+    description: Run tests for python2 and python3
+    prerequisites: [_test-py2, _test-py3]
+    container: docs
+    run: "echo All tests are fine"
+
+  _test-py2: !Command
+    description: Run python2 tests
+    container: py2
+    run: [python2, -m, unittest, discover]
+
+  _test-py3: !Command
+    description: Run python3 tests
+    container: py3
+    run: [python3, -m, unittest, discover]
