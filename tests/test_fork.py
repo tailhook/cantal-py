@@ -12,8 +12,7 @@ class TestFork(TestBase):
             counter 8: {"metric": "count", "state": "job.working"}
             counter 8: {"metric": "duration", "state": "job.sleeping"}
             counter 8: {"metric": "duration", "state": "job.working"}
-            counter 8: {"metric": "err", "state": "job"}
-            pad 24
+            pad 32
             state 64: {"state": "job"}
         """)
         self.assertRead(b'\x00'*8, 0, 8)

@@ -1,8 +1,14 @@
 import time
+import sys
+import logging
+import traceback
 from contextlib import contextmanager
 
 from .simple_state import State
 from .counters import Counter
+
+
+log = logging.getLogger(__name__)
 
 
 class Branch(object):
@@ -33,14 +39,13 @@ class Fork(object):
                 parent=self, state=state, **kwargs))
         self._state = state_obj
         self._branch = None
-        # We do our best not to crash any code which does accouning the
-        # wrong way. So to report the problems we use a separate counter
-        self._err = Counter(metric="err", state=state, **kwargs)
 
     @contextmanager
     def context(self):
         if self._branch is not None:
-            self._err.incr()
+            tb = traceback.format_stack()
+            log.error("Nested Fork(%x).context() is not supported at:\n%s",
+                id(self._state), ''.join(tb[:-2]).rstrip())
         self._branch = None
         self._state.enter('_')
         try:
