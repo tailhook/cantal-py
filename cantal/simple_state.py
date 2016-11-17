@@ -18,7 +18,7 @@ class State(_Value):
     def __init__(self, size=CACHE_LINE_SIZE-HEADER_SIZE, **kwargs):
         sz = size + self.HEADER_SIZE
         if sz & (sz - 1) or sz % CACHE_LINE_SIZE:
-            warnings.warning(
+            warnings.warn(
                 "Size of state counter should be multiple of {} or smaller"
                 "power of two sans header size ({}), perfect size is {}"
                 .format(CACHE_LINE_SIZE, self.HEADER_SIZE,

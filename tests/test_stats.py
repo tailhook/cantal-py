@@ -1,6 +1,7 @@
 import os
 import struct
 import textwrap
+import warnings
 from cantal import Collection, Counter, Float, Integer, State, Fork
 from unittest import TestCase
 
@@ -95,6 +96,14 @@ class TestValues(TestBase):
         with state.context('short'):
             self.assertRead(b'short\x00onger_job_name' + b'\x00'*36, 8)
         self.assertRead(b'\x00'*8 + b'short\x00onger_job_name' + b'\x00'*36)
+
+    def test_state_warns_on_odd_size(self):
+        with warnings.catch_warnings(record=True) as ws:
+            warnings.simplefilter("always")
+
+            State(101)
+
+            self.assertEquals(1, len(ws))
 
 
 class TestScheme(TestBase):
