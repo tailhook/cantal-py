@@ -2,9 +2,13 @@ containers:
 
   docs:
     setup:
-    - !Alpine v3.4
-    - !Install [alpine-base, py-sphinx, make]
+    - !Alpine v3.6
+    - !Install [alpine-base, py-sphinx, make, vim]
     - !Py2Install [sphinx_rtd_theme]
+    - &bulk !Tar
+      url: "https://github.com/tailhook/bulk/releases/download/v0.4.9/bulk-v0.4.9.tar.gz"
+      sha256: 23471a9986274bb4b7098c03e2eb7e1204171869b72c45385fcee1c64db2d111
+      path: /
 
   py2:
     setup:
@@ -39,6 +43,11 @@ commands:
     prerequisites: [_test-py2, _test-py3, _test-py3-32bit]
     container: docs
     run: "echo All tests are fine"
+
+  _bulk: !Command
+    description: Run `bulk` command (for version bookkeeping)
+    container: docs
+    run: [bulk]
 
   _test-py2: !Command
     description: Run python2 tests

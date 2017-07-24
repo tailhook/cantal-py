@@ -1,0 +1,14 @@
+minimum-bulk: v0.4.5
+versions:
+
+- file: setup.py
+  block-start: setup\(
+  regex: ^\s*version\s*=\s*'(\S+)'
+
+- file: doc/conf.py
+  regex: ^version\s*=\s*'(\S+)'
+  partial-version: ^\d+\.\d+
+
+- file: doc/conf.py
+  regex: ^release\s*=\s*'(\S+)'
+
