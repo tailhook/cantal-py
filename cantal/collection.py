@@ -122,6 +122,15 @@ global_collection = Collection()
 
 def start():
     global global_collection
+
+    if len(global_collection._all_values) == 0:
+        warnings.warn(
+            "Cantal library is activated but no metrics found. "
+            "Note: you need to import your modules and initialize all metrics "
+            "before calling `cantal.start()`",
+            stacklevel=2)
+        return
+
     path = os.environ.pop("CANTAL_PATH", None)
     if path is None:
         if 'XDG_RUNTIME_DIR' in os.environ:
