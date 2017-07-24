@@ -6,3 +6,5 @@ __pycache__
 /.vagga
 /.vagrant
 /doc/_build
+/build
+/cantal.egg-info
