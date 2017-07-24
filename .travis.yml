@@ -6,3 +6,10 @@ python:
   - "3.4"
   - "3.5"
 script: nosetests
+deploy:
+  provider: pypi
+  user: PC
+  password:
+    secure: "AJ5tu9+mGdN4EIDuESyMcUid3y8K0eoaCqoBqChp8KCfahjfJh4/HVjU96Au7M1/gvyii/2E9dY1JHNwO++vc9o+W9Ce9znzsUlbIQlbXUClDG0hTQn3PVa89Ae9eDm3gcQGDNRjE6wlk53B5azPqxjr3bjMKzxjzKkoZJ9oEas="
+  on:
+    tags: true
