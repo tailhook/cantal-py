@@ -2,10 +2,10 @@ import os
 import time
 import cantal
 
-wakeups = cantal.Counter(name='wakeups')
-sleep_time = cantal.Float(name='last_sleep')
-num_fds = cantal.Integer(name='num_fds')
-state = cantal.State(name='main_loop')
+wakeups = cantal.Counter(group='main_loop', metric='wakeups')
+sleep_time = cantal.Float(group='main_loop', metric='last_sleep')
+num_fds = cantal.Integer(group='main_loop', metric='num_fds')
+state = cantal.State(group='main_loop', metric='main_state')
 
 
 def main():

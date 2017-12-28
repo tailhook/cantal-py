@@ -17,7 +17,7 @@ by providing some metrics. Here is a bare (but fully working) example:
 
     import cantal
 
-    ticks = cantal.Counter(name='ticks')
+    ticks = cantal.Counter(group="main_loop", metric="ticks")
 
     def main():
         cantal.start()
