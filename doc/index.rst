@@ -14,6 +14,7 @@ Contents:
    tutorial
    metrics
    reference
+   integrations/index
 
 
 Indices and tables
