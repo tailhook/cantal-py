@@ -16,7 +16,7 @@ jobs:
     - mypy cantal
     - nosetests
   - stage: deploy
-    python: 3.7
+    python: 3.6
     install: true
     script: true
     deploy:
