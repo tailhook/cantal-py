@@ -5,7 +5,12 @@ python:
   - "3.3"
   - "3.4"
   - "3.5"
-script: nosetests
+install:
+- pip install mypy flake8
+script:
+- flake8 cantal
+- mypy cantal
+- nosetests
 deploy:
   provider: pypi
   user: PC
