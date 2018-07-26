@@ -1,6 +1,7 @@
 language: python
 script: nosetests
 jobs:
+  include:
   - python: "2.7"
   - python: "3.4"
   - python: "3.5"
