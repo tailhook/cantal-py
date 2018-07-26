@@ -5,6 +5,8 @@ __pycache__
 
 /.vagga
 /.vagrant
+/.mypy_cache
+/.pytest_cache
 /doc/_build
 /build
 /cantal.egg-info

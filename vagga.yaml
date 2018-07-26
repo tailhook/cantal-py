@@ -2,22 +2,23 @@ containers:
 
   docs:
     setup:
-    - !Alpine v3.6
+    - !Alpine v3.8
+    - !Repo edge/community
     - !Install [alpine-base, py-sphinx, make, vim]
     - !Py2Install [sphinx_rtd_theme]
     - &bulk !Tar
-      url: "https://github.com/tailhook/bulk/releases/download/v0.4.9/bulk-v0.4.9.tar.gz"
-      sha256: 23471a9986274bb4b7098c03e2eb7e1204171869b72c45385fcee1c64db2d111
+      url: "https://github.com/tailhook/bulk/releases/download/v0.4.12/bulk-v0.4.12.tar.gz"
+      sha256: 7deeb4895b3909afea46194ef01bafdeb30ff89fc4a7b6497172ba117734040e
       path: /
 
   py2:
     setup:
-    - !Alpine v3.4
+    - !Alpine v3.8
     - !Install [python]
 
   py3:
     setup:
-    - !Alpine v3.4
+    - !Alpine v3.8
     - !Install [python3]
 
   py3-ubuntu-i386:
@@ -26,6 +27,12 @@ containers:
       codename: xenial
       arch: i386
     - !Install [python3]
+
+  py3lint:
+    setup:
+    - !Container py3
+    - !PipConfig { dependencies: true }
+    - !Py3Install [flake8, mypy]
 
 commands:
 
@@ -40,9 +47,16 @@ commands:
 
   test: !Command
     description: Run tests for python2 and python3
-    prerequisites: [_test-py2, _test-py3, _test-py3-32bit]
+    prerequisites: [check, _test-py2, _test-py3, _test-py3-32bit]
     container: docs
     run: "echo All tests are fine"
+
+  check: !Command
+    description: Run linters
+    container: py3lint
+    run: |
+      flake8 cantal
+      mypy cantal
 
   _bulk: !Command
     description: Run `bulk` command (for version bookkeeping)

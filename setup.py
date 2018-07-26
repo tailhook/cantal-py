@@ -9,6 +9,7 @@ setup(name='cantal',
       author_email='paul@colomiets.name',
       url='http://github.com/tailhook/cantal-py',
       packages=['cantal'],
+      package_data={"cantal": ["py.typed"]},
       classifiers=[
           'Development Status :: 4 - Beta',
           'Programming Language :: Python :: 3',
