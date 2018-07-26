@@ -1,20 +1,25 @@
 language: python
-python:
-  - "2.7"
-  - "3.2"
-  - "3.3"
-  - "3.4"
-  - "3.5"
-install:
-- pip install mypy flake8
-script:
-- flake8 cantal
-- mypy cantal
-- nosetests
-deploy:
-  provider: pypi
-  user: PC
-  password:
-    secure: "AJ5tu9+mGdN4EIDuESyMcUid3y8K0eoaCqoBqChp8KCfahjfJh4/HVjU96Au7M1/gvyii/2E9dY1JHNwO++vc9o+W9Ce9znzsUlbIQlbXUClDG0hTQn3PVa89Ae9eDm3gcQGDNRjE6wlk53B5azPqxjr3bjMKzxjzKkoZJ9oEas="
-  on:
-    tags: true
+script: nosetests
+jobs:
+  - python: "2.7"
+  - python: "3.4"
+  - python: "3.5"
+  - python: "3.6"
+  - python: "3.7"
+    install:
+    - pip install mypy flake8
+    script:
+    - flake8 cantal
+    - mypy cantal
+    - nosetests
+  - stage: deploy
+    python: 3.7
+    install: true
+    script: true
+    deploy:
+      provider: pypi
+      user: PC
+      password:
+        secure: "AJ5tu9+mGdN4EIDuESyMcUid3y8K0eoaCqoBqChp8KCfahjfJh4/HVjU96Au7M1/gvyii/2E9dY1JHNwO++vc9o+W9Ce9znzsUlbIQlbXUClDG0hTQn3PVa89Ae9eDm3gcQGDNRjE6wlk53B5azPqxjr3bjMKzxjzKkoZJ9oEas="
+      on:
+        tags: true
