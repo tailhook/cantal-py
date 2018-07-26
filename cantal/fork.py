@@ -1,5 +1,4 @@
 import time
-import sys
 import logging
 import traceback
 from contextlib import contextmanager
@@ -18,9 +17,9 @@ class Branch(object):
         self.name = suffix
         self._parent = parent
         self._counter = Counter(state=state + '.' + suffix,
-            metric='count', **kwargs)
+                                metric='count', **kwargs)
         self._duration = Counter(state=state + '.' + suffix,
-            metric='duration', **kwargs)
+                                 metric='duration', **kwargs)
 
     def enter(self):
         self._parent.enter_branch(self)
@@ -36,7 +35,7 @@ class Fork(object):
         state_obj = State(state=state, **kwargs)
         for name in branches:
             setattr(self, name, Branch(name,
-                parent=self, state=state, **kwargs))
+                                       parent=self, state=state, **kwargs))
         self._state = state_obj
         self._branch = None
 
@@ -45,7 +44,7 @@ class Fork(object):
         if self._branch is not None:
             tb = traceback.format_stack()
             log.error("Nested Fork(%x).context() is not supported at:\n%s",
-                id(self._state), ''.join(tb[:-2]).rstrip())
+                      id(self._state), ''.join(tb[:-2]).rstrip())
         self._branch = None
         self._state.enter('_')
         try:

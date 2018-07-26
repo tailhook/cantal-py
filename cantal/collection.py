@@ -120,6 +120,7 @@ class ActiveCollection(object):
 
 global_collection = Collection()
 
+
 def start():
     global global_collection
 

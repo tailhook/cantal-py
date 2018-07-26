@@ -1,5 +1,4 @@
 import abc
-import sys
 import logging
 
 from . import collection as _collection
@@ -21,7 +20,7 @@ class _Value(object):
         collection.add(kwargs, self)
 
         log.debug("New %s:%x with params %r",
-            self.__class__.__name__, id(self), kwargs)
+                  self.__class__.__name__, id(self), kwargs)
 
         # Create temporary view, this is useful if you enter some branch of
         # code in unusual code path such as ipython shell or management

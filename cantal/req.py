@@ -8,13 +8,13 @@ from .levels import Integer
 class RequestTracker(object):
     def __init__(self, group_name, **kwargs):
         self.requests = Counter(group=group_name,
-            metric="requests", **kwargs)
+                                metric="requests", **kwargs)
         self.duration = Counter(group=group_name,
-            metric="total_duration", **kwargs)
+                                metric="total_duration", **kwargs)
         self.errors = Counter(group=group_name,
-            metric="errors", **kwargs)
+                              metric="errors", **kwargs)
         self.in_progress = Integer(group=group_name,
-            metric="in_progress", **kwargs)
+                                   metric="in_progress", **kwargs)
 
     @contextmanager
     def request(self):

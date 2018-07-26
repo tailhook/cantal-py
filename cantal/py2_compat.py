@@ -14,7 +14,7 @@ else:
         'd': ctypes.c_double,
     }
 
-    class MemoryView(object):
+    class _MemoryView(object):
         __slots__ = ('_mmap', '_slice')
 
         def __init__(self, _mmap, _slice=None):
@@ -35,3 +35,5 @@ else:
             bytesize = struct.calcsize(typ)
             _typ = TYPEMAP[typ] * ((stop - start) // bytesize)
             return _typ.from_buffer(self._mmap, start)
+
+    MemoryView = _MemoryView
