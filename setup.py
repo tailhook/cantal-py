@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='cantal',
-      version='0.2.1',
+      version='0.2.2',
       description='The library that submits metrics to cantal',
       author='Paul Colomiets',
       author_email='paul@colomiets.name',
