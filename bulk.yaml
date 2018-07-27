@@ -5,6 +5,9 @@ versions:
   block-start: setup\(
   regex: ^\s*version\s*=\s*'(\S+)'
 
+- file: cantal/__init__.py
+  regex: ^__version__\s*=\s*'(\S+)'
+
 - file: doc/conf.py
   regex: ^version\s*=\s*'(\S+)'
   partial-version: ^\d+\.\d+
