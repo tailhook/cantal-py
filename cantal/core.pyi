@@ -4,7 +4,7 @@ from typing import Dict
 
 class _Value(object):
 
-    def __init__(self, **kwargs: Dict[str, str]) -> None: pass
+    def __init__(self, **kwargs: str) -> None: pass
 
     @abc.abstractmethod
     def _get_size(self) -> int:

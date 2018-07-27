@@ -5,8 +5,7 @@ from typing import Dict, Iterator
 class Branch(object):
 
     def __init__(self,
-        suffix: str, state:str, parent: Fork,
-        **kwargs: Dict[str, str],
+        suffix: str, state:str, parent: Fork, **kwargs: str,
     ) -> None:
         pass
 
@@ -16,8 +15,7 @@ class Branch(object):
 class Fork(object):
 
     def __init__(self,
-        branches: Iterator[str], state: str,
-        **kwargs: Dict[str, str],
+        branches: Iterator[str], state: str, **kwargs: str,
     ) -> None:
         pass
 

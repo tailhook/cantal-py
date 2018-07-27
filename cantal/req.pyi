@@ -3,7 +3,7 @@ from typing import Dict, Tuple, Iterator
 
 
 class RequestTracker(object):
-    def __init__(self, group_name: str, **kwargs: Dict[str, str]) -> None:
+    def __init__(self, group_name: str, **kwargs: str) -> None:
         pass
 
     @contextmanager

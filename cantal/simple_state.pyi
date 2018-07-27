@@ -5,7 +5,7 @@ from .core import _Value
 
 
 class State(_Value):
-    def __init__(self, size: int, **kwargs: Dict[str, str]) -> None:
+    def __init__(self, size: int, **kwargs: str) -> None:
         pass
 
     def _get_size(self) -> int: pass
