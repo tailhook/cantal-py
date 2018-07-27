@@ -9,7 +9,7 @@ with open(path.join(this_directory, 'README.rst'), 'rt') as f:
 
 
 setup(name='cantal',
-      version='0.2.4',
+      version='0.2.5',
       description='The library that submits metrics to cantal',
       author='Paul Colomiets',
       author_email='paul@colomiets.name',
