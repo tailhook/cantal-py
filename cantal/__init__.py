@@ -7,7 +7,7 @@ from .fork import Fork
 from .req import RequestTracker
 
 
-__version__ = '0.2.3'
+__version__ = '0.2.4'
 __all__ = [
     "Collection", "DuplicateValueException",
     "Counter",
